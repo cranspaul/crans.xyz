@@ -4,7 +4,14 @@ import PageLayout from "../components/PageLayout";
 
 const TRACK_ICON = "/tracks_file.gif";
 
-const musicProjects = [
+type MusicProject = {
+  readonly name: string;
+  readonly href: string;
+  readonly media: string;
+  readonly internal?: boolean;
+};
+
+const musicProjects: readonly MusicProject[] = [
   {
     name: "Tales From The Booth",
     href: "https://www.sound.xyz/senspace/tales-from-the-booth-by-dr-booth",
