@@ -1,6 +1,5 @@
 import { CSSProperties, PropsWithChildren, useEffect, useMemo, useState } from "react";
 
-import Loader from "./Loader";
 
 type PageLayoutProps = PropsWithChildren<{
   backgroundImage?: string;
@@ -10,7 +9,7 @@ type PageLayoutProps = PropsWithChildren<{
   restrictOverflow?: boolean;
 }>;
 
-const DEFAULT_BACKGROUND = "/index.gif";
+
 const CRITICAL_GIFS = [DEFAULT_BACKGROUND, "/tracks_file.gif", "/devin_file.gif"] as const;
 
 const preloadImage = (src: string) =>
@@ -72,7 +71,7 @@ const PageLayout = ({
         } as CSSProperties
       }
     >
-      {isLoading && <Loader message={loaderMessage} />}
+      {isLoading />}
       <div className="page-layout__content">{children}</div>
     </div>
   );
