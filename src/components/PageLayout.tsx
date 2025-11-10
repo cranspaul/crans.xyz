@@ -11,6 +11,21 @@ type PageLayoutProps = PropsWithChildren<{
 }>;
 
 const DEFAULT_BACKGROUND = "/index.gif";
+const CRITICAL_GIFS = [DEFAULT_BACKGROUND, "/tracks_file.gif", "/devin_file.gif"] as const;
+
+const preloadImage = (src: string) =>
+  new Promise<void>((resolve) => {
+    const image = new Image();
+    const finalize = () => resolve();
+
+    image.onload = finalize;
+    image.onerror = finalize;
+    image.src = src;
+
+    if (image.complete) {
+      finalize();
+    }
+  });
 
 const PageLayout = ({
   children,
@@ -23,14 +38,20 @@ const PageLayout = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
+    let isMounted = true;
+
+    const assetsToLoad = Array.from(new Set([backgroundImage, ...CRITICAL_GIFS]));
+
+    Promise.all(assetsToLoad.map(preloadImage)).finally(() => {
+      if (isMounted) {
+        setIsLoading(false);
+      }
+    });
 
     return () => {
-      window.clearTimeout(timeout);
+      isMounted = false;
     };
-  }, []);
+  }, [backgroundImage]);
 
   const layoutClassName = useMemo(() => {
     const classes = ["page-layout"];
