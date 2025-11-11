@@ -4,7 +4,7 @@ import PageLayout from "../components/PageLayout";
 
 const Hot16Page = () => {
   return (
-    <PageLayout loaderMessage="Spinning vinyl..." contentAlignment="center">
+    <PageLayout contentAlignment="center">
       <main className="main-shell">
         <section className="outer-container outer-container--grid">
           <article className="content-section content-section--grid hot16-content">
