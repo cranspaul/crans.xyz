@@ -32,7 +32,7 @@ const musicProjects: readonly MusicProject[] = [
 
 const TracksPage = () => {
   return (
-    <PageLayout loaderMessage="Rewinding tapes..." contentAlignment="center">
+    <PageLayout contentAlignment="center">
       <main className="main-shell">
         <section className="outer-container outer-container--grid tracks-container">
           <div className="content-section content-section--grid">
