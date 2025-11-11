@@ -1,16 +1,14 @@
-import { CSSProperties, PropsWithChildren, useEffect, useMemo, useState } from "react";
-
+import { CSSProperties, PropsWithChildren, useEffect, useMemo } from "react";
 
 type PageLayoutProps = PropsWithChildren<{
   backgroundImage?: string;
   overlayColor?: string;
-  loaderMessage?: string;
+  backgroundColor?: string;
   contentAlignment?: "center" | "top";
   restrictOverflow?: boolean;
 }>;
 
-
-const CRITICAL_GIFS = [DEFAULT_BACKGROUND, "/tracks_file.gif", "/devin_file.gif"] as const;
+const CRITICAL_GIFS = ["/tracks_file.gif", "/devin_file.gif", "/WarOfCards%20(2).png"] as const;
 
 const preloadImage = (src: string) =>
   new Promise<void>((resolve) => {
@@ -28,28 +26,22 @@ const preloadImage = (src: string) =>
 
 const PageLayout = ({
   children,
-  backgroundImage = DEFAULT_BACKGROUND,
-  overlayColor = "rgba(0, 0, 255, 0.3)",
-  loaderMessage = "Loading...",
+  backgroundImage,
+  overlayColor,
+  backgroundColor,
   contentAlignment = "center",
   restrictOverflow = false
 }: PageLayoutProps) => {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    let isMounted = true;
+    const assetsToLoad = Array.from(
+      new Set(
+        [...CRITICAL_GIFS, backgroundImage].filter(
+          (asset): asset is string => typeof asset === "string" && asset.length > 0
+        )
+      )
+    );
 
-    const assetsToLoad = Array.from(new Set([backgroundImage, ...CRITICAL_GIFS]));
-
-    Promise.all(assetsToLoad.map(preloadImage)).finally(() => {
-      if (isMounted) {
-        setIsLoading(false);
-      }
-    });
-
-    return () => {
-      isMounted = false;
-    };
+    Promise.all(assetsToLoad.map(preloadImage)).catch(() => undefined);
   }, [backgroundImage]);
 
   const layoutClassName = useMemo(() => {
@@ -61,17 +53,35 @@ const PageLayout = ({
     return classes.join(" ");
   }, [contentAlignment, restrictOverflow]);
 
+  const customProperties = useMemo(() => {
+    const styles: CSSProperties & {
+      ["--page-background-image"]?: string;
+      ["--page-overlay-color"]?: string;
+      ["--page-background-color"]?: string;
+    } = {
+      "--page-background-image": backgroundImage ? `url("${backgroundImage}")` : "none"
+    };
+
+    if (backgroundImage) {
+      if (overlayColor) {
+        styles["--page-overlay-color"] = overlayColor;
+      }
+    } else {
+      styles["--page-overlay-color"] = overlayColor ?? "transparent";
+    }
+
+    if (backgroundColor) {
+      styles["--page-background-color"] = backgroundColor;
+    }
+
+    return styles;
+  }, [backgroundColor, backgroundImage, overlayColor]);
+
   return (
     <div
       className={layoutClassName}
-      style={
-        {
-          "--page-background-image": `url("${backgroundImage}")`,
-          "--page-overlay-color": overlayColor
-        } as CSSProperties
-      }
+      style={customProperties}
     >
-      {isLoading />}
       <div className="page-layout__content">{children}</div>
     </div>
   );
