@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PageLayout from "../components/PageLayout";
 
 const DEVIN_ICON = "/devin_file.gif";
-const WARS_OF_CARDS_IMAGE = "/WarOfCards%20(2).png";
+const WARS_OF_CARDS_IMAGE = "/icon.gif";
 
 const projects = [
   {
