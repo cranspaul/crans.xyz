@@ -4,25 +4,11 @@ import PageLayout from "../components/PageLayout";
 
 const RootPage = () => {
   return (
-    <PageLayout loaderMessage="Decrypting lore..." contentAlignment="center">
+    <PageLayout contentAlignment="center">
       <main className="main-shell">
         <section className="outer-container outer-container--grid root-container">
           <div className="content-section content-section--grid root-content">
             <div className="faq-projects root-projects">
-              <article className="project-card root-card">
-                <div className="project-title">┌ crans.tkn.near ┐</div>
-                <p className="project-description">
-                  /krans.token.nir/ noun, configurative
-                  <br />
-                  <br />
-                  24 locked decimals nearby
-                  <br />
-                  <br />
-                  Synonyms: token / index / share
-                  <br />
-                  Related words: flawless victory / $CRANS
-                </p>
-              </article>
               <article className="project-card root-card">
                 <div className="project-title">┌ Devin&apos; ┐</div>
                 <p className="project-description">
