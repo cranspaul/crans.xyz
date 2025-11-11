@@ -7,7 +7,7 @@ import PageLayout from "../components/PageLayout";
 
 const HomePage = () => {
   return (
-    <PageLayout loaderMessage="Setting up the deck..." contentAlignment="center">
+    <PageLayout contentAlignment="center">
       <main className="main-shell">
         <section className="home-panel">
           <nav className="directory-structure" aria-label="Site navigation">
