@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PageLayout from "../components/PageLayout";
 
 const DEVIN_ICON = "/devin_file.gif";
+const WARS_OF_CARDS_IMAGE = "/WarOfCards%20(2).png";
 
 const projects = [
   {
@@ -15,13 +16,13 @@ const projects = [
     name: "Wars Of Cards",
     href: "https://warsofcards.online/",
     description: "Wars Of Cards",
-    media: DEVIN_ICON
+    media: WARS_OF_CARDS_IMAGE
   }
 ] as const;
 
 const DevinPage = () => {
   return (
-    <PageLayout loaderMessage="Booting dev rigs...">
+    <PageLayout>
       <main className="main-shell">
         <section className="outer-container outer-container--grid outer-container--scrollable">
           <div className="content-section content-section--grid content-section--scrollable">
