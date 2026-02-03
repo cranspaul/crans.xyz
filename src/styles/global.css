@@ -105,6 +105,7 @@ a {
   padding: clamp(1rem, 4vw, 1.5rem);
   width: 100%;
   max-width: 720px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -314,6 +315,8 @@ a {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
 }
 
 .hot16-content {
@@ -323,7 +326,8 @@ a {
 }
 
 .navigation-buttons .button {
-  flex: 1 1 180px;
+  flex: 1 1 140px;
+  min-width: 0;
 }
 
 .back-button-container {
@@ -427,10 +431,14 @@ a {
 
   .navigation-buttons {
     flex-direction: column;
+    width: 100%;
   }
 
   .navigation-buttons .button {
-    flex: 1 1 100%;
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem 1rem;
   }
 
   .directory-structure {
@@ -487,6 +495,13 @@ a {
   .button,
   .nav-button {
     width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .navigation-buttons .button {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.95rem;
   }
 }
 
