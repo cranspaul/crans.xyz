@@ -13,11 +13,6 @@ type MusicProject = {
 
 const musicProjects: readonly MusicProject[] = [
   {
-    name: "Tales From The Booth",
-    href: "https://www.sound.xyz/senspace/tales-from-the-booth-by-dr-booth",
-    media: TRACK_ICON
-  },
-  {
     name: "#hot16challenge",
     href: "/tracks/hot16challenge",
     media: TRACK_ICON,
