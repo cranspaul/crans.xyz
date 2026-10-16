@@ -24,7 +24,7 @@ const HomePage = () => {
           <footer className="footer-container">
             <div className="contact-logos">
               <a
-                href="https://t.me/cranspaul"
+                href="https://t.me/cransopaulsky"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Telegram"
@@ -32,7 +32,7 @@ const HomePage = () => {
                 <PiTelegramLogoFill className="contact-logo" />
               </a>
               <a
-                href="https://x.com/cranspaul"
+                href="https://x.com/cransopaulsky"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X"
